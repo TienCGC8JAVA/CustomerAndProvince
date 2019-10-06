@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Provinces</title>
+</head>
+<body>
+<a href="/provinces/create-province">Create new province</a>
+<h1>Provinces</h1>
+<th:block th:if="${#lists.isEmpty(provinces)}">
+    <span>No customer</span>
+</th:block>
+<th:block th:unless="${#lists.isEmpty(provinces)}">
+<table border="1">
+    <tr>
+        <th>Name</th>
+        <th>Edit</th>
+        <th>View</th>
+        <th>Delete</th>
+    </tr>
+    <tr th:each="province : ${provinces}">
+        <td th:text="${province.name}"></td>
+        <td><a th:href="@{/provinces/edit-province/__${province.id}__ }">Edit</a></td>
+        <td><a th:href="@{/provinces/view-province/__${province.id}__ }">View</a></td>
+        <td><a th:href="@{/provinces/delete-province/__${province.id}__ }">Delete</a></td>
+    </tr>
+</table>
+</th:block>
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<a href="/customers/create-customer">Create new customer</a>
+<h1>Customers</h1>
+<th:block th:if="${#lists.isEmpty(customers)}">
+    <span>No customer</span>
+</th:block>
+<th:block th:unless="${#lists.isEmpty(customers)}">
+<table border="1">
+    <tr>
+        <th>First name</th>
+        <th>Last name</th>
+        <th>Province</th>
+        <th>Edit</th>
+        <th>Delete</th>
+    </tr>
+    <tr th:each="customer : ${customers}">
+        <td th:text="${customer.firstName}"></td>
+        <td th:text="${customer.lastName}"></td>
+        <td th:text="${customer.province?.name}"></td>
+        <td><a th:href="@{/customers/edit-customer/__${customer.id}__ }">Edit</a></td>
+        <td><a th:href="@{/customers/delete-customer/__${customer.id}__ }">Delete</a></td>
+    </tr>
+</table>
+</th:block>
+</body>
+</html>
